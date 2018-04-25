@@ -141,7 +141,7 @@ public class MachineModel {
         //INSTRUCTION_MAP entry for "SUB"
         INSTRUCTIONS.put(0x10, arg -> {
             int arg1 = memory.getData(cpu.memoryBase+arg);
-            cpu.accumulator += arg1;
+            cpu.accumulator -= arg1;
             cpu.incrementIP(1);
         });
         
@@ -176,23 +176,35 @@ public class MachineModel {
         
         //INSTRUCTION_MAP entry for "DIVI"
         INSTRUCTIONS.put(0x15, arg -> {
-            cpu.accumulator /= arg;
-            cpu.incrementIP(1);
+        	if(arg != 0) {
+	            cpu.accumulator /= arg;
+	            cpu.incrementIP(1);
+        	} else {
+        		throw new DivideByZeroException("Cannot divide by zero");
+        	}
         });
         
         //INSTRUCTION_MAP entry for "DIV"
         INSTRUCTIONS.put(0x16, arg -> {
-            int arg1 = memory.getData(cpu.memoryBase+arg);
-            cpu.accumulator /= arg1;
-            cpu.incrementIP(1);
+	        int arg1 = memory.getData(cpu.memoryBase+arg);
+	        if(arg1 != 0) {
+	            cpu.accumulator /= arg1;
+	            cpu.incrementIP(1);
+        	} else {
+        		throw new DivideByZeroException("Cannot divide by zero");
+        	}
         });
         
         //INSTRUCTION_MAP entry for "DIVN"
         INSTRUCTIONS.put(0x17, arg -> {
-            int arg1 = memory.getData(cpu.memoryBase+arg);
-            int arg2 = memory.getData(cpu.memoryBase+arg1);
-            cpu.accumulator /= arg2;
-            cpu.incrementIP(1);
+	        int arg1 = memory.getData(cpu.memoryBase+arg);
+	        int arg2 = memory.getData(cpu.memoryBase+arg1);
+	        if(arg2 != 0) {
+	            cpu.accumulator /= arg2;
+	            cpu.incrementIP(1);
+        	} else {
+        		throw new DivideByZeroException("Cannot divide by zero");
+        	}
         });
         
         //INSTRUCTION_MAP entry for "ANDI"
