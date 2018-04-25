@@ -195,7 +195,106 @@ public class MachineModel {
             cpu.incrementIP(1);
         });
         
+        //INSTRUCTION_MAP entry for "ANDI"
+        INSTRUCTIONS.put(0x18, arg -> {
+        	if(cpu.accumulator != 0 && arg != 0) {
+        		cpu.accumulator = 1;
+        	} else {
+        		cpu.accumulator = 0;
+        	}
+    		cpu.incrementIP(1);
+        });
         
+        //INSTRUCTION_MAP entry for "AND"
+        INSTRUCTIONS.put(0x19, arg -> {
+            int arg1 = memory.getData(cpu.memoryBase+arg);
+        	if(cpu.accumulator != 0 && arg1 != 0) {
+        		cpu.accumulator = 1;
+        	} else {
+        		cpu.accumulator = 0;
+        	}
+    		cpu.incrementIP(1);
+        });
+        
+        //INSTSRUCTION_MAP entry for "NOT"
+        INSTRUCTIONS.put(0x1A, arg -> {
+        	if(cpu.accumulator != 0) {
+        		cpu.accumulator = 0;
+        	} else {
+        		cpu.accumulator = 1;
+        	}
+    		cpu.incrementIP(1);
+        });
+        
+        //INSTRUCTION_MAP entry for "CMPL"
+        INSTRUCTIONS.put(0x1B, arg -> {
+        	int val = memory.getData(cpu.memoryBase + arg);
+        	if(val < 0) {
+        		cpu.accumulator = 1;
+        	} else {
+        		cpu.accumulator = 0;
+        	}
+        	cpu.incrementIP(1);
+        });
+        
+        //INSTRUCTION_MAP entry for "CMPZ"
+        INSTRUCTIONS.put(0x1C, arg -> {
+        	int val = memory.getData(cpu.memoryBase + arg);
+        	if(val == 0) {
+        		cpu.accumulator = 1;
+        	} else {
+        		cpu.accumulator = 0;
+        	}
+        	cpu.incrementIP(1);
+        });
+        
+        //INSTRUCTION_MAP entry for "HALT"
+        INSTRUCTIONS.put(0x1F, arg -> {
+        	callback.halt();
+        });
+        
+        
+        
+	}
+	
+	int[] getData() {
+		return memory.getData();
+	}
+
+	public int getData(int index) {
+		return memory.getData(index);
+	}
+
+	public void setData(int index, int value) {
+		memory.setData(index, value);
+	}
+	
+	public int getAccumulator() {
+		return this.cpu.accumulator;
+	}
+	
+	public void setAccumulator(int accumulator) {
+		this.cpu.accumulator = accumulator;
+	}
+	
+	public int getInstructionPointer() {
+		return this.cpu.instructionPointer;
+	}
+	
+	public void setInstructionPointer(int instructionPointer) {
+		this.cpu.instructionPointer = instructionPointer;
+	}
+	
+	public int getMemoryBase() {
+		return this.cpu.memoryBase;
+	}
+	
+	public void setMemoryBase(int memoryBase) {
+		this.cpu.memoryBase = memoryBase;
+	}
+	
+	public Instruction get(int index) {
+		return INSTRUCTIONS.get(index);
 	}
 
 }

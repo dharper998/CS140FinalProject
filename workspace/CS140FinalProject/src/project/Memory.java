@@ -4,7 +4,7 @@ public class Memory {
 	public static final int DATA_SIZE = 2048;
 	private int[] data = new int[DATA_SIZE];
 	
-	int[] getDataArray() {
+	int[] getData() {
 		return data;
 	}
 	
