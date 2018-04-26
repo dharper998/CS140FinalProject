@@ -1,5 +1,7 @@
 package projectView;
 
+import java.awt.Component;
+
 import project.MachineModel;
 
 public class ViewMediator /*extends Observable*/ {
@@ -14,4 +16,9 @@ public class ViewMediator /*extends Observable*/ {
 	}
 
 	public void step() {}
+
+	public Component getFrame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
