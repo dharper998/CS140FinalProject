@@ -15,7 +15,7 @@ public class Loader {
 			input = new Scanner(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return null;
+			return "File " + file.getName() + " Not Found";
 		}
 		boolean inCode = true;
 		while(input.hasNextLine()) {

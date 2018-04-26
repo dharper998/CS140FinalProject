@@ -1,13 +1,25 @@
 package project;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.Map;
 import java.util.TreeMap;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class MachineModel {
 	private class CPU {
 		private int accumulator;
 		private int instructionPointer;
 		private int memoryBase;
+		
 		
 		public void incrementIP(int val) {
 			instructionPointer += val;
@@ -19,6 +31,8 @@ public class MachineModel {
 	private Memory memory = new Memory();
 	private HaltCallback callback;
 	private boolean withGUI;
+	private Job[] jobs = new Job[2];
+	private Job currentJob;
 	
 	public MachineModel() {
 		this(false, null);
@@ -80,7 +94,7 @@ public class MachineModel {
 		
 		//INSTRUCTION_MAP entry for "JUMPI"
 		INSTRUCTIONS.put(0x8, arg -> {
-			cpu.instructionPointer = arg;
+			cpu.instructionPointer = currentJob.getStartcodeIndex() + arg;
 		});
 		
 		//INSTRUCTION_MAP entry for "JMPZR"
@@ -105,7 +119,7 @@ public class MachineModel {
 		//INSTRUCTION_MAP entry for "JMPZI"
 		INSTRUCTIONS.put(0xB, arg -> {
 			if(cpu.accumulator == 0) {
-				cpu.instructionPointer = arg;
+				cpu.instructionPointer = currentJob.getStartcodeIndex() + arg;
 			} else {
 				cpu.incrementIP(1);
 			}
@@ -325,5 +339,25 @@ public class MachineModel {
 		memory.setCode(index, op, arg);
 	}
 
+	String getHex(int i) {
+		return memory.getHex(i);
+	}
 	
+	String getDecimal(int i) {
+		return memory.getDecimal(i);
+	}
+	
+	public Job getCurrentJob() {
+		return currentJob;
+	}
+	
+	public void setJob(int i) {
+		if (i < 0 || i > 1) { throw new IllegalArgumentException("input must be zero or one");}
+		currentJob = jobs[i];
+		currentJob.setCurrentAcc(cpu.accumulator);
+		currentJob.setCurrentIP(cpu.instructionPointer);
+		cpu.accumulator = currentJob.getCurrentAcc();
+		cpu.instructionPointer = currentJob.getCurrentIP();
+		cpu.memoryBase = currentJob.getStartmemoryIndex();      //if this doesnt work, swap lines 356 and 358 - DF
+	}
 }
