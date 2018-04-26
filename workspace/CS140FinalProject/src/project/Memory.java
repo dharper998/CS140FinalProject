@@ -37,4 +37,12 @@ public class Memory {
 	public void setData(int index, int value) {
 		data[index] = value;
 	}
+	
+	String getHex(int i) {
+		return Integer.toHexString(code[2*i]).toUpperCase() + " " + Integer.toHexString(code[2*i+1]).toUpperCase();
+	}
+	
+	String getDecimal(int i) {
+		return InstrMap.toMnemonic.get(code[2*i]) + " " + code[2*i+1];
+	}
 }
