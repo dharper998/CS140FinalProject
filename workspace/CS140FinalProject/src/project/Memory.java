@@ -63,5 +63,6 @@ public class Memory {
 	
 	void clearJob() {
 		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
+		//not done
 	}
 }
