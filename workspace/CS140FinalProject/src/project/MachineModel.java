@@ -339,15 +339,25 @@ public class MachineModel {
 		memory.setCode(index, op, arg);
 	}
 
-	public String getHex(int i) {
+	String getHex(int i) {
 		return memory.getHex(i);
 	}
 	
-	public String getDecimal(int i) {
+	String getDecimal(int i) {
 		return memory.getDecimal(i);
 	}
 	
 	public Job getCurrentJob() {
 		return currentJob;
+	}
+	
+	public void setJob(int i) {
+		if (i < 0 || i > 1) { throw new IllegalArgumentException("input must be zero or one");}
+		currentJob = jobs[i];
+		currentJob.setCurrentAcc(cpu.accumulator);
+		currentJob.setCurrentIP(cpu.instructionPointer);
+		cpu.accumulator = currentJob.getCurrentAcc();
+		cpu.instructionPointer = currentJob.getCurrentIP();
+		cpu.memoryBase = currentJob.getStartmemoryIndex();      //if this doesnt work, swap lines 356 and 358 - DF
 	}
 }
