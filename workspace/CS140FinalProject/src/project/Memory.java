@@ -6,6 +6,9 @@ public class Memory {
 	
 	public static final int CODE_MAX = 2048;
 	private int[] code = new int[CODE_MAX];
+	
+	private int changedIndex = -1;
+	
 	int[] getCode() {
 		return code;
 	}
@@ -36,6 +39,7 @@ public class Memory {
 	
 	public void setData(int index, int value) {
 		data[index] = value;
+		changedIndex = index;
 	}
 	
 	String getHex(int i) {
@@ -44,5 +48,20 @@ public class Memory {
 	
 	String getDecimal(int i) {
 		return InstrMap.toMnemonic.get(code[2*i]) + " " + code[2*i+1];
+	}
+	
+	public int getChangedIndex() {
+		return changedIndex;
+	}
+	
+	void clearData(int start, int end) {
+		for(int i = start; i < end; i++) {
+			data[i] = 0;
+		}
+		changedIndex = -1;
+	}
+	
+	void clearJob() {
+		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
 	}
 }

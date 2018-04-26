@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import projectView.States;
+
 public class MachineModel {
 	private class CPU {
 		private int accumulator;
@@ -41,6 +43,16 @@ public class MachineModel {
 	public MachineModel(boolean b, HaltCallback hcb) {
 		withGUI = b;
 		callback = hcb;
+		jobs[0] = new Job();
+		jobs[1] = new Job();
+		currentJob = jobs[0];
+		jobs[0].setStartcodeIndex(0);
+		jobs[0].setStartmemoryIndex(0);
+		jobs[1].setStartcodeIndex(Memory.CODE_MAX/4);
+		jobs[1].setStartmemoryIndex(Memory.DATA_SIZE/2);
+		for(int i = 0; i < 2; i++) {
+			jobs[i].setCurrentState(States.NOTHING_LOADED);
+		}
 		
 		//INSTRUCTION_MAP entry for "NOP"
 		INSTRUCTIONS.put(0x0, arg -> {
