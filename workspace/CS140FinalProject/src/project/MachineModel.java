@@ -9,6 +9,7 @@ public class MachineModel {
 		private int instructionPointer;
 		private int memoryBase;
 		
+		
 		public void incrementIP(int val) {
 			instructionPointer += val;
 		}
@@ -19,6 +20,8 @@ public class MachineModel {
 	private Memory memory = new Memory();
 	private HaltCallback callback;
 	private boolean withGUI;
+	private Job[] jobs = new Job[2];
+	private Job currentJob;
 	
 	public MachineModel() {
 		this(false, null);
@@ -331,5 +334,9 @@ public class MachineModel {
 	
 	String getDecimal(int i) {
 		return memory.getDecimal(i);
+	}
+	
+	public Job getCurrentJob() {
+		return currentJob;
 	}
 }

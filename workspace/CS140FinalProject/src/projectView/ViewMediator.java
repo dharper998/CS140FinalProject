@@ -1,11 +1,13 @@
 package projectView;
 
-import java.awt.Component;
-
 import project.MachineModel;
+import java.util.Observable;
+import javax.swing.JFrame;
 
-public class ViewMediator /*extends Observable*/ {
+@SuppressWarnings("deprecation")
+public class ViewMediator extends Observable {
 	private MachineModel model;
+	private JFrame frame;
 	
 	public MachineModel getModel() {
 		return model;
@@ -17,8 +19,7 @@ public class ViewMediator /*extends Observable*/ {
 
 	public void step() {}
 
-	public Component getFrame() {
-		// TODO Auto-generated method stub
-		return null;
+	public JFrame getFrame() {
+		return frame;
 	}
 }
