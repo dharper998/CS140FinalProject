@@ -20,11 +20,11 @@ public class Animator {
 		this.autoStepOn = autoStepOn;
 	}
 	
-	public void toggleAutoStep() {
+	void toggleAutoStep() {
 		autoStepOn = !autoStepOn;
 	}
 	
-	public void setPeriod(int period) {
+	void setPeriod(int period) {
 		timer.setDelay(period);
 	}
 	
