@@ -58,5 +58,17 @@ public class MemoryViewPanel implements Observer{
 		
 		dataHex = new JTextField[upper-lower];
 		dataDecimal = new JTextField[upper-lower];
+		
+		for(int i=lower;i<upper;i++) {
+			numPanel.add(new JLabel(i+": ", JLabel.RIGHT));
+			dataDecimal[i - lower] = new JTextField(10);
+			dataHex[i-lower] = new JTextField(10);
+			decimalPanel.add(dataDecimal[i-lower]);
+			hexPanel.add(dataHex[i-lower]);
+		}
+		
+		scroller = new JScrollPane(innerPanel);
+		panel.add(scroller);
+		return panel;
 	}
 }
