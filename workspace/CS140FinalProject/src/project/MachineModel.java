@@ -339,11 +339,11 @@ public class MachineModel {
 		memory.setCode(index, op, arg);
 	}
 
-	String getHex(int i) {
+	public String getHex(int i) {
 		return memory.getHex(i);
 	}
 	
-	String getDecimal(int i) {
+	public String getDecimal(int i) {
 		return memory.getDecimal(i);
 	}
 	
