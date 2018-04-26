@@ -1,6 +1,7 @@
 package project;
 
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
@@ -19,6 +20,9 @@ public class FullAssembler implements Assembler {
 			while(reader.hasNext()) {
 				fileIn.add(reader.nextLine());
 			}
+		} catch(FileNotFoundException e) {
+			error.append("\nUnable to open the source file");
+			return -1;
 		}
 		
 		int errorLine;
@@ -50,7 +54,14 @@ public class FullAssembler implements Assembler {
 				error.append("\nSecond separator found");
 			}
 			
-			
+			//ERROR 4
+			if(readingCode == true) {
+				String[] parts = line.trim().split("\\s+");
+				if(!InstrMap.toCode.keySet().contains(parts[0])) {
+					error.append("\nIllegal mnemonic");
+					errorLine = lineNum;
+				}
+			}
 			
 			lineNum++;
 		}
