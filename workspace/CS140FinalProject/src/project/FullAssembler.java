@@ -25,7 +25,7 @@ public class FullAssembler implements Assembler {
 			return -1;
 		}
 		
-		int errorLine;
+		int errorLine = 0;
 		int lineNum = 0;
 		boolean blankLineFound = false;
 		for(String line : fileIn) {
@@ -58,8 +58,12 @@ public class FullAssembler implements Assembler {
 			if(readingCode == true) {
 				String[] parts = line.trim().split("\\s+");
 				if(!InstrMap.toCode.keySet().contains(parts[0])) {
-					error.append("\nIllegal mnemonic");
+					error.append("\nError on line " + (errorLine+1) + ": illegal mnemonic");
 					errorLine = lineNum;
+				} else {
+					if(parts[0] != parts[0].toUpperCase()) {
+						error.append("\nError on line" + (errorLine+1) + ": illegal mnemonic");
+					}
 				}
 			}
 			
