@@ -82,4 +82,17 @@ public class ViewMediator extends Observable {
 		frame.setVisible(true);
 	}
 	
+	public States getCurrentStates() {
+		return model.getCurrentStates();
+	}
+	
+	public void setCurrent(States currentStates) {
+		model.setCurrent(currentStates);
+		if(currentState == States.PROGRAM_HALTED) {
+			animator.setAutoStepOn(false);
+		}
+		model.getCurrentState().enter();
+		setChanged();
+		notifyObservers();
+	}
 }
