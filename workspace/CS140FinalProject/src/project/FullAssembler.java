@@ -2,6 +2,8 @@ package project;
 
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -61,13 +63,45 @@ public class FullAssembler implements Assembler {
 					error.append("\nError on line " + (errorLine+1) + ": illegal mnemonic");
 					errorLine = lineNum;
 				} else {
-					if(parts[0] != parts[0].toUpperCase()) {
+					if(!parts[0].equals(parts[0].toUpperCase())) {
 						error.append("\nError on line" + (errorLine+1) + ": illegal mnemonic");
+					} else {
+						//ERROR 5
+						if(noArgument.contains(parts[0])) {
+							if(parts[0].length() != 1) {
+								error.append("\nError on line " + (errorLine+1) + ": this mnemonic cannot take arguments");
+							}
+						} else {
+							if(parts[0].length() > 2) {
+								error.append("\nError on line " + (errorLine+1) + ": this mnemonic has too many arguments");
+							} else if(parts[0].length() < 2) {
+								error.append("\nError on line " + (errorLine+1) + ": this mnemonic is missing an argument");
+							}
+							//ERROR 6
+							try{
+								int arg = Integer.parseInt(parts[1],16);
+							} catch(NumberFormatException e) {
+								error.append("\nError on line " + (errorLine+1) + ": argument is not a hex number");
+								errorLine = lineNum;	
+							}
+						}
 					}
 				}
 			}
 			
+			
+			
 			lineNum++;
+		}
+		
+		try (PrintWriter output = new PrintWriter(outputFileName)){
+			for(String s : outputCode) output.println(s);
+		} catch (FileNotFoundException e) {
+			error.append("\nError: Unable to write the assembled program to the output file");
+			errorLine = -1;
+		} catch (IOException e) {
+			error.append("\nUnexplained IO Exception");
+			errorLine = -1;
 		}
 		
 		return errorLine;

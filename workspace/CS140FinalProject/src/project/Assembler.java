@@ -1,10 +1,11 @@
 package project;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
 public interface Assembler {
-	Set<String> noArgument = new TreeSet<String>();
+	Set<String> noArgument = new TreeSet<String>(Arrays.asList("Halt", "NOP", "NOT"));
 	
 	
 	/**
