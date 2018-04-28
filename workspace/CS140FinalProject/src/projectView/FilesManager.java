@@ -1,6 +1,7 @@
 package projectView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import project.Assembler;
 import project.FullAssembler;
 import project.Job;
+import project.Loader;
 import project.MachineModel;
 
 public class FilesManager {
@@ -27,6 +29,11 @@ public class FilesManager {
 	public FilesManager(ViewMediator v) {
 		view = v;
 		model = view.getModel();
+	}
+	
+	public void initialize() {
+		locateDefaultDirectory();
+		loadPropertiesFile();
 	}
 
 	private void locateDefaultDirectory() {
