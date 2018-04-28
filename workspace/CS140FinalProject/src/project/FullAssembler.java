@@ -112,8 +112,8 @@ public class FullAssembler implements Assembler {
 		
 		if(errorLine == 0) {
 			System.out.println("Enter the name of the file without extension: ");
-			int i = new SimpleAssembler().assemble(inputFileName + ".pasm", 
-					outputFileName + ".pexe", error);
+			int i = new SimpleAssembler().assemble(inputFileName, 
+					outputFileName, error);
 			System.out.println("result = " + i);
 		
 		}

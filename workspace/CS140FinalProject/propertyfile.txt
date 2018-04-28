@@ -1,0 +1,4 @@
+#File locations
+#Sat Apr 28 16:37:31 EDT 2018
+ExecutableDirectory=C\:/Users/Drew/Documents/GitHub/CS140FinalProject/workspace/CS140FinalProject/
+SourceDirectory=C\:/Users/Drew/Documents/GitHub/CS140FinalProject/workspace/CS140FinalProject/
