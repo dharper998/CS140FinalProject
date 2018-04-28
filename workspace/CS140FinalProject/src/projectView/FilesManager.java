@@ -29,6 +29,11 @@ public class FilesManager {
 		view = v;
 		model = view.getModel();
 	}
+	
+	public void initialize() {
+		locateDefaultDirectory();
+		loadPropertiesFile();
+	}
 
 	private void locateDefaultDirectory() {
 		//CODE TO DISCOVER THE ECLIPSE DEFAULT DIRECTORY:

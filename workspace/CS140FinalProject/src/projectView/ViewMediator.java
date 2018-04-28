@@ -95,4 +95,13 @@ public class ViewMediator extends Observable {
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void clearJob() {
+		model.clearJob();
+		model.getCurrentState();
+	}
+	
+	public void makeReady(String s) {
+		//uhhhhhhhh
+	}
 }
