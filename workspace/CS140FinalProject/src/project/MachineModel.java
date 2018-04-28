@@ -351,11 +351,11 @@ public class MachineModel {
 		memory.setCode(index, op, arg);
 	}
 
-	String getHex(int i) {
+	public String getHex(int i) {
 		return memory.getHex(i);
 	}
 	
-	String getDecimal(int i) {
+	public String getDecimal(int i) {
 		return memory.getDecimal(i);
 	}
 	
@@ -372,4 +372,40 @@ public class MachineModel {
 		cpu.instructionPointer = currentJob.getCurrentIP();
 		cpu.memoryBase = currentJob.getStartmemoryIndex();      //if this doesnt work, swap lines 356 and 358 - DF
 	}
+
+	public int getChangedIndex() {
+		return memory.getChangedIndex();
+	}
+
+	public States getCurrentState() {
+		return currentJob.getCurrentState();
+	}
+
+	public void setCurrentState(States currentState) {
+		currentJob.setCurrentState(currentState);
+	}
+	
+	public void clearJob() {
+		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
+		memory.clear(currentJob.getStartcodeIndex(), currentJob.getStartcodeIndex()+currentJob.getCodeSize());
+		//Not sure if clear is the right method, Leslie asked for clearCode which doesnt exist
+		cpu.accumulator = 0;
+		cpu.instructionPointer=currentJob.getStartcodeIndex();
+		currentJob.reset();
+	}
+	
+	public void step() {
+		try {
+			if(!(cpu.instructionPointer >= currentJob.getStartcodeIndex() && cpu.instructionPointer < currentJob.getStartcodeIndex()+currentJob.getCodeSize())) {
+				throw new CodeAccessException("IP is not within bounds");
+			}
+			int op = getOp(cpu.instructionPointer);
+			int arg = getArg(cpu.instructionPointer);
+			get(op).execute(arg);
+		} catch(Exception e) {
+			callback.halt();
+			throw e;
+		}
+	}
+	
 }

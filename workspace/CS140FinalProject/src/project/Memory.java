@@ -42,11 +42,11 @@ public class Memory {
 		changedIndex = index;
 	}
 	
-	String getHex(int i) {
+	public String getHex(int i) {
 		return Integer.toHexString(code[2*i]).toUpperCase() + " " + Integer.toHexString(code[2*i+1]).toUpperCase();
 	}
 	
-	String getDecimal(int i) {
+	public String getDecimal(int i) {
 		return InstrMap.toMnemonic.get(code[2*i]) + " " + code[2*i+1];
 	}
 	
@@ -61,8 +61,4 @@ public class Memory {
 		changedIndex = -1;
 	}
 	
-	void clearJob() {
-		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
-		//not done
-	}
 }
