@@ -8,16 +8,16 @@ public class InstrMap {
 	public static Map<Integer, String> toMnemonic = new TreeMap<Integer, String>();
 
 	static {
-		 toCode.put("NOP", 0);
-		 toCode.put("LODI", 1);
-		 toCode.put("LOD", 2);
-		 toCode.put("LODN", 3);
-		 toCode.put("STO", 4);
-		 toCode.put("STON", 5);
-		 toCode.put("JMPR", 6);
-		 toCode.put("JUMP", 7);
-		 toCode.put("JUMPI", 8);
-		 toCode.put("JMPZR", 9);
+		 toCode.put("NOP", 0x0);
+		 toCode.put("LODI", 0x1);
+		 toCode.put("LOD", 0x2);
+		 toCode.put("LODN", 0x3);
+		 toCode.put("STO", 0x4);
+		 toCode.put("STON", 0x5);
+		 toCode.put("JMPR", 0x6);
+		 toCode.put("JUMP", 0x7);
+		 toCode.put("JUMPI", 0x8);
+		 toCode.put("JMPZR", 0x9);
 		 toCode.put("JMPZ", 0xA);
 		 toCode.put("JMPZI", 0xB);
 		 toCode.put("ADDI", 0xC);

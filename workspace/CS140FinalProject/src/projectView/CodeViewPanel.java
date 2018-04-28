@@ -4,11 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -17,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import project.Loader;
 import project.MachineModel;
 import project.Memory;
 
@@ -71,8 +74,7 @@ public class CodeViewPanel implements Observer {
 		if(arg1 != null && arg1.equals("Load Code")) {
 			int offset = model.getCurrentJob().getStartcodeIndex();
 			System.out.println("CODE SIZE " +  model.getCurrentJob().getCodeSize());
-			for(int i = offset; 
-					i < offset + model.getCurrentJob().getCodeSize(); i++) {
+			for(int i = offset; i < offset + model.getCurrentJob().getCodeSize(); i++) {
 				System.out.println("CODE SIZE " +  model.getCurrentJob().getCodeSize());
 				codeHex[i].setText(model.getHex(i));
 				codeDecimal[i].setText(model.getDecimal(i));
@@ -118,6 +120,21 @@ public class CodeViewPanel implements Observer {
 				bar.setValue(Math.max(0, bounds.y - 15*bounds.height));
 			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		ViewMediator view = new ViewMediator(); 
+		MachineModel model = new MachineModel();
+		CodeViewPanel panel = new CodeViewPanel(view, model);
+		JFrame frame = new JFrame("TEST");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(400, 700);
+		frame.setLocationRelativeTo(null);
+		frame.add(panel.createCodeDisplay());
+		frame.setVisible(true);
+		String str = Loader.load(model, new File("large.pexe"), 0, 0);
+		model.getCurrentJob().setCodeSize(Integer.parseInt(str));
+		panel.update(view, "Load Code");
 	}
 
 }
