@@ -36,8 +36,8 @@ public class SimpleAssembler implements Assembler {
 				.peek(line -> {if(line.toUpperCase().equals("DATA")) readingCode = false;})
 				.map(line -> line.trim())
 				.collect(Collectors.partitioningBy(line -> readingCode));
-//				System.out.println("true List " + lists.get(true)); // these lines can be uncommented 
-//				System.out.println("false List " + lists.get(false)); // for checking the code
+				//System.out.println("true List " + lists.get(true)); // these lines can be uncommented 
+				//System.out.println("false List " + lists.get(false)); // for checking the code
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class SimpleAssembler implements Assembler {
 				.map(line -> line.split("\\s+"))
 				.map(this::makeOutputCode) // note how we use an instance method in the same class
 				.collect(Collectors.toList());
-		List<String> outputData = lists.get(true).stream()
+		List<String> outputData = lists.get(false).stream()
 				.map(line -> line.split("\\s+"))
 				.map(this::makeOutputData)
 				.collect(Collectors.toList());

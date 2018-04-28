@@ -22,10 +22,10 @@ public class FullAssembler implements Assembler {
 			while(reader.hasNext()) {
 				fileIn.add(reader.nextLine());
 			}
-		} catch(FileNotFoundException e) {
+		} /*catch(FileNotFoundException e) {
 			error.append("\nUnable to open the source file");
 			return -1;
-		}
+		}*/
 		
 		int errorLine = 0;
 		int lineNum = 0;
@@ -107,26 +107,28 @@ public class FullAssembler implements Assembler {
 					errorLine = lineNum;
 				}
 			}
-			
-			
-			
 			lineNum++;
 		}
 		
 		if(errorLine == 0) {
 			System.out.println("Enter the name of the file without extension: ");
-			try { 
-				int i = new SimpleAssembler().assemble(inputFileName + ".pasm", 
-						outputFileName + ".pexe", error);
-				System.out.println("result = " + i);
-			} catch (FileNotFoundException e) {
+			int i = new SimpleAssembler().assemble(inputFileName + ".pasm", 
+					outputFileName + ".pexe", error);
+			System.out.println("result = " + i);
+		
+		}
+		
+		/*
+		 * } catch (FileNotFoundException e) {
 				error.append("\nError: Unable to write the assembled program to the output file");
-				errorLine = -1;
+				retVal = -1;
 			} catch (IOException e) {
 				error.append("\nUnexplained IO Exception");
-				errorLine = -1;
+				retVal = -1;
 			}
-		}
+			
+			Leslie wants us to add this when outputting to the file but that isnt done in full assembler so ???
+		 */
 		
 		return errorLine;
 	}
