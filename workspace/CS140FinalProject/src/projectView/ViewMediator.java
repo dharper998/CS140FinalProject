@@ -87,7 +87,7 @@ public class ViewMediator extends Observable {
 	}
 	
 	public void setCurrent(States currentStates) {
-		model.setCurrent(currentStates);
+		model.setCurrentState(currentStates);
 		if(currentStates == States.PROGRAM_HALTED) {
 			animator.setAutoStepOn(false);
 		}
