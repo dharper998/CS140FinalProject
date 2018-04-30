@@ -34,7 +34,7 @@ public class ViewMediator extends Observable {
 			public void run() {
 				ViewMediator mediator = new ViewMediator();
 				MachineModel model = new MachineModel(
-						true,  
+						//true,  
 						() -> mediator.setCurrentState(States.PROGRAM_HALTED)
 						);
 				mediator.setModel(model);

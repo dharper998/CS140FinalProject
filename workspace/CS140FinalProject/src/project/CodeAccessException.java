@@ -1,5 +1,6 @@
 package project;
 
+@SuppressWarnings("serial")
 public class CodeAccessException extends RuntimeException{
 	 /**
      * No-argument constructor needed for serialization

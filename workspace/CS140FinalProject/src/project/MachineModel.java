@@ -1,18 +1,7 @@
 package project;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.util.Map;
 import java.util.TreeMap;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 
 import projectView.States;
 
@@ -32,16 +21,16 @@ public class MachineModel {
 	private CPU cpu = new CPU();
 	private Memory memory = new Memory();
 	private HaltCallback callback;
-	private boolean withGUI;
+	//private boolean withGUI;
 	private Job[] jobs = new Job[2];
 	private Job currentJob;
 	
 	public MachineModel() {
-		this(false, null);
+		this(/*false, */null);
 	}
 
-	public MachineModel(boolean b, HaltCallback hcb) {
-		withGUI = b;
+	public MachineModel(/*boolean b, */HaltCallback hcb) {
+		//withGUI = b;
 		callback = hcb;
 		jobs[0] = new Job();
 		jobs[1] = new Job();
@@ -413,5 +402,4 @@ public class MachineModel {
 			throw e;
 		}
 	}
-	
 }
