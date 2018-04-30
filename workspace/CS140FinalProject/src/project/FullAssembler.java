@@ -78,6 +78,7 @@ public class FullAssembler implements Assembler {
 							}
 							//ERROR 6
 							try{
+								@SuppressWarnings("unused")
 								int arg = Integer.parseInt(parts[1],16);
 							} catch(NumberFormatException e) {
 								error.append("\nError on line " + (lineNum+1) + ": argument is not a hex number");
@@ -90,7 +91,9 @@ public class FullAssembler implements Assembler {
 				String[] parts = line.trim().split("\\s+");
 				if(parts.length == 2) {
 					try {
+						@SuppressWarnings("unused")
 						int address = Integer.parseInt(parts[0], 16);
+						@SuppressWarnings("unused")
 						int value = Integer.parseInt(parts[1],16);
 					} catch(NumberFormatException e) {
 						error.append("\nError on line " + (lineNum+1) + ": data has non-numeric memory address");
