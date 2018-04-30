@@ -9,7 +9,7 @@ public class Memory {
 	
 	private int changedIndex = -1;
 	
-	int[] getCode() {
+	public int[] getCode() {
 		return code;
 	}
 	public int getOp(int i) {

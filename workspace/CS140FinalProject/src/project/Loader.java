@@ -27,7 +27,7 @@ public class Loader {
 				inCode = false;
 			} else if(inCode && num != -1) {
 				int arg = parser.nextInt();
-				model.setCode(num, arg, codeOffset + codeSize);
+				model.setCode(codeOffset + codeSize, num, arg);
 				codeSize++;
 			} else {
 				int arg = parser.nextInt();
@@ -42,9 +42,9 @@ public class Loader {
 	public static void main(String[] args) {
 		MachineModel model = new MachineModel();
 		String s = Loader.load(model, new File("factorial8.pexe"),100,200);
-		for(int i = 100; i < 100+Integer.parseInt(s); i++) {
-			System.out.println(model.getOp(i));			
-			System.out.println(model.getArg(i));			
+		for(int i = 100; i < 100 + Integer.parseInt(s); i++) {
+			System.out.println("OP: " + model.getOp(i));			
+			System.out.println("ARG: "+ model.getArg(i));			
 		}
 		for (int i = 200; i < 203; i++)
 		System.out.println(i + " " + model.getData(i));
