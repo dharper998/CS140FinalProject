@@ -21,16 +21,16 @@ public class MachineModel {
 	private CPU cpu = new CPU();
 	private Memory memory = new Memory();
 	private HaltCallback callback;
-	private boolean withGUI;
+	//private boolean withGUI;
 	private Job[] jobs = new Job[2];
 	private Job currentJob;
 	
 	public MachineModel() {
-		this(false, null);
+		this(/*false, */null);
 	}
 
-	public MachineModel(boolean b, HaltCallback hcb) {
-		withGUI = b;
+	public MachineModel(/*boolean b, */HaltCallback hcb) {
+		//withGUI = b;
 		callback = hcb;
 		jobs[0] = new Job();
 		jobs[1] = new Job();
