@@ -1,18 +1,7 @@
 package project;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.util.Map;
 import java.util.TreeMap;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 
 import projectView.States;
 
@@ -413,5 +402,4 @@ public class MachineModel {
 			throw e;
 		}
 	}
-	
 }
