@@ -21,16 +21,14 @@ public class MachineModel {
 	private CPU cpu = new CPU();
 	private Memory memory = new Memory();
 	private HaltCallback callback;
-	//private boolean withGUI;
 	private Job[] jobs = new Job[2];
 	private Job currentJob;
 	
 	public MachineModel() {
-		this(/*false, */null);
+		this(null);
 	}
 
-	public MachineModel(/*boolean b, */HaltCallback hcb) {
-		//withGUI = b;
+	public MachineModel(HaltCallback hcb) {
 		callback = hcb;
 		jobs[0] = new Job();
 		jobs[1] = new Job();
@@ -284,10 +282,7 @@ public class MachineModel {
         //INSTRUCTION_MAP entry for "HALT"
         INSTRUCTIONS.put(0x1F, arg -> {
         	callback.halt();
-        });
-        
-        
-        
+        });     
 	}
 	
 	int[] getData() {
@@ -383,7 +378,6 @@ public class MachineModel {
 	public void clearJob() {
 		memory.clearData(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/2);
 		memory.clear(currentJob.getStartcodeIndex(), currentJob.getStartcodeIndex()+currentJob.getCodeSize());
-		//Not sure if clear is the right method, Leslie asked for clearCode which doesnt exist
 		cpu.accumulator = 0;
 		cpu.instructionPointer=currentJob.getStartcodeIndex();
 		currentJob.reset();

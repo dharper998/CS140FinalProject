@@ -46,7 +46,4 @@ public class ControlPanel implements Observer {
 		runButton.setEnabled(view.getCurrentState().getRunPauseActive());
 		reloadButton.setEnabled(view.getCurrentState().getReloadActive());
 	}
-	
-	
-	
 }
