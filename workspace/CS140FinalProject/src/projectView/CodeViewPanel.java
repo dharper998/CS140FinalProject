@@ -45,7 +45,7 @@ public class CodeViewPanel implements Observer {
 				TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION);
 		panel.setBorder(border);
 		JPanel innerPanel = new JPanel();
-		panel.setLayout(new BorderLayout());
+		innerPanel.setLayout(new BorderLayout());
 		JPanel numPanel = new JPanel();
 		numPanel.setLayout(new GridLayout(0, 1));
 		JPanel decimalPanel = new JPanel();
@@ -56,7 +56,7 @@ public class CodeViewPanel implements Observer {
 		innerPanel.add(decimalPanel, BorderLayout.CENTER);
 		innerPanel.add(hexPanel, BorderLayout.LINE_END);
 		
-		for(int i = 0; i < Memory.CODE_MAX / 2; i++) { //Lander put Code.CODE_MAX
+		for(int i = 0; i < Memory.CODE_MAX/2; i++) { //Lander put Code.CODE_MAX
 			numPanel.add(new JLabel(i+": ", JLabel.RIGHT));
 			codeDecimal[i] = new JTextField(10);
 			codeHex[i] = new JTextField(10);
