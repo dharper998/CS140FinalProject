@@ -46,7 +46,7 @@ public class MemoryViewPanel implements Observer{
 				TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION);
 		panel.setBorder(border);
 		JPanel innerPanel = new JPanel();
-		panel.setLayout(new BorderLayout());
+		innerPanel.setLayout(new BorderLayout());
 		JPanel numPanel = new JPanel();
 		numPanel.setLayout(new GridLayout(0, 1));
 		JPanel decimalPanel = new JPanel();
