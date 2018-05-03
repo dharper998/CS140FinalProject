@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public interface Assembler {
-	Set<String> noArgument = new TreeSet<String>(Arrays.asList("Halt", "NOP", "NOT"));
+	Set<String> noArgument = new TreeSet<String>(Arrays.asList("HALT", "NOP", "NOT"));
 	
 	
 	/**
