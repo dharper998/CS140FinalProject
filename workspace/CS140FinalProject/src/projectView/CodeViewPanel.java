@@ -136,5 +136,4 @@ public class CodeViewPanel implements Observer {
 		model.getCurrentJob().setCodeSize(Integer.parseInt(str));
 		panel.update(view, "Load Code");
 	}
-
 }

@@ -34,7 +34,6 @@ public class ViewMediator extends Observable {
 			public void run() {
 				ViewMediator mediator = new ViewMediator();
 				MachineModel model = new MachineModel(
-						//true,  
 						() -> mediator.setCurrentState(States.PROGRAM_HALTED)
 						);
 				mediator.setModel(model);
@@ -198,11 +197,10 @@ public class ViewMediator extends Observable {
 	}
 
 	public void setCurrentState(States currentStates) {
-		//from here
 		if(currentStates == States.PROGRAM_HALTED) {
 			animator.setAutoStepOn(false);
 		}
-		model.setCurrentState(currentStates); //Moved this
+		model.setCurrentState(currentStates);
 		model.getCurrentState().enter();
 		setChanged();
 		notifyObservers();
