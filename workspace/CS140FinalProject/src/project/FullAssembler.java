@@ -36,7 +36,6 @@ public class FullAssembler implements Assembler {
 		boolean blankLineFound = false;
 		int blankLineError = 0;
 		for(String line : fileIn) {
-			System.out.println(line);
 			//ERROR 1
 			if(line.trim().length() == 0 && blankLineFound == false) {
 				blankLineFound = true;
@@ -142,18 +141,6 @@ public class FullAssembler implements Assembler {
 			int i = new SimpleAssembler().assemble(inputFileName, outputFileName, error);
 			System.out.println("result = " + i);
 		}
-		
-		/*
-		 * } catch (FileNotFoundException e) {
-				error.append("\nError: Unable to write the assembled program to the output file");
-				retVal = -1;
-			} catch (IOException e) {
-				error.append("\nUnexplained IO Exception");
-				retVal = -1;
-			}
-			
-			Leslie wants us to add this when outputting to the file but that isnt done in full assembler so ???
-		 */
 		
 		return errorLine;
 	}
