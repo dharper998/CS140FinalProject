@@ -36,7 +36,6 @@ public class FullAssembler implements Assembler {
 		boolean blankLineFound = false;
 		int blankLineError = 0;
 		for(String line : fileIn) {
-			System.out.println(line);
 			//ERROR 1
 			if(line.trim().length() == 0 && blankLineFound == false) {
 				blankLineFound = true;

@@ -1,7 +1,7 @@
 #File locations
-#Thu May 03 16:40:59 EDT 2018
+#Sun May 06 18:09:40 EDT 2018
 =\=\=\=\=\=\=
-ExecutableDirectory=C\:/Users/Drew/Documents/GitHub/CS140FinalProject/workspace/CS140FinalProject/
-SourceDirectory=C\:/Users/Drew/Documents/GitHub/CS140FinalProject/workspace/CS140FinalProject/
+ExecutableDirectory=C\:/Users/nosil/Documents/GitHub/CS140FinalProject/workspace/CS140FinalProject/
+SourceDirectory=C\:/Users/nosil/Documents/GitHub/CS140FinalProject/workspace/CS140FinalProject/
 >>>>>>>=00481aea3bd3828a001aad093ef69cec6959ef24
 <<<<<<<=HEAD
