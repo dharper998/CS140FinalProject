@@ -39,7 +39,8 @@ public class SimpleAssembler implements Assembler {
 				//System.out.println("true List " + lists.get(true)); // these lines can be uncommented 
 				//System.out.println("false List " + lists.get(false)); // for checking the code
 		} catch (IOException e) {
-			e.printStackTrace();
+			error.append("\nUnexplained IO Exception");
+			return -1;
 		}
 		lists.get(false).remove("DATA");
 		List<String> outputCode = lists.get(true).stream()
@@ -56,7 +57,8 @@ public class SimpleAssembler implements Assembler {
 			output.println(0); // filler for the 2-line pattern
 			for(String s : outputData) output.println(s);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			error.append("\nError: Unable to write the assembled program to the output file");
+			return -1;
 		}
 		return 0;
 	}

@@ -142,18 +142,6 @@ public class FullAssembler implements Assembler {
 			System.out.println("result = " + i);
 		}
 		
-		/*
-		 * } catch (FileNotFoundException e) {
-				error.append("\nError: Unable to write the assembled program to the output file");
-				retVal = -1;
-			} catch (IOException e) {
-				error.append("\nUnexplained IO Exception");
-				retVal = -1;
-			}
-			
-			Leslie wants us to add this when outputting to the file but that isnt done in full assembler so ???
-		 */
-		
 		return errorLine;
 	}
 }
