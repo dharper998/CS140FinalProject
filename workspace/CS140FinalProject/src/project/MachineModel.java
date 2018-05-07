@@ -355,9 +355,9 @@ public class MachineModel {
 	
 	public void setJob(int i) {
 		if (i < 0 || i > 1) { throw new IllegalArgumentException("input must be zero or one");}
-		currentJob = jobs[i];
 		currentJob.setCurrentAcc(cpu.accumulator);
 		currentJob.setCurrentIP(cpu.instructionPointer);
+		currentJob = jobs[i];
 		cpu.accumulator = currentJob.getCurrentAcc();
 		cpu.instructionPointer = currentJob.getCurrentIP();
 		cpu.memoryBase = currentJob.getStartmemoryIndex();      //if this doesnt work, swap lines 356 and 358 - DF
